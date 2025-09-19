@@ -168,9 +168,7 @@ public class PlayerController : MonoBehaviour
         if ((inputX < 0 && isFacingRight) || (inputX > 0 && !isFacingRight))
         {
             isFacingRight = !isFacingRight;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            GetComponent<SpriteRenderer>().flipX = !isFacingRight;
         }
     }
 

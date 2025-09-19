@@ -14,6 +14,14 @@ public class BubbleWeapon : MonoBehaviour
     [Tooltip("忽略太小的瞄準變化")]
     public float aimDeadZone = 0.01f;
 
+    [Header("瞄準偏移")]
+    [Tooltip("瞄準角度偏移（度）")]
+    public float aimAngleOffset = 0f;
+    [Tooltip("瞄準向量偏移")]
+    public Vector2 aimVectorOffset = Vector2.zero;
+    [Tooltip("是否使用角度偏移（否則使用向量偏移）")]
+    public bool useAngleOffset = true;
+
     private float cdTimer = 0f;
     private Vector2 currentAim = Vector2.right;
 
@@ -21,7 +29,13 @@ public class BubbleWeapon : MonoBehaviour
     {
         if (aimWorldDirection.sqrMagnitude >= aimDeadZone * aimDeadZone)
         {
-            currentAim = aimWorldDirection.normalized;
+            Vector2 baseAim = aimWorldDirection.normalized;
+
+            // 應用偏移
+            Vector2 offsetAim = ApplyAimOffset(baseAim);
+
+            currentAim = offsetAim.normalized;
+
             if (aimArrow != null)
             {
                 // 讓箭頭 +X 方向指向 currentAim
@@ -70,5 +84,75 @@ public class BubbleWeapon : MonoBehaviour
     private void Update()
     {
         if (cdTimer > 0f) cdTimer -= Time.deltaTime;
+    }
+
+    /// <summary>
+    /// 應用瞄準偏移
+    /// </summary>
+    private Vector2 ApplyAimOffset(Vector2 originalAim)
+    {
+        Vector2 resultAim = originalAim;
+
+        if (useAngleOffset)
+        {
+            // 使用角度偏移
+            if (Mathf.Abs(aimAngleOffset) > 0.01f)
+            {
+                float angleRad = aimAngleOffset * Mathf.Deg2Rad;
+                float cos = Mathf.Cos(angleRad);
+                float sin = Mathf.Sin(angleRad);
+
+                // 旋轉矩陣
+                resultAim = new Vector2(
+                    originalAim.x * cos - originalAim.y * sin,
+                    originalAim.x * sin + originalAim.y * cos
+                );
+            }
+        }
+        else
+        {
+            // 使用向量偏移
+            if (aimVectorOffset.sqrMagnitude > 0.01f)
+            {
+                resultAim = originalAim + aimVectorOffset;
+            }
+        }
+
+        return resultAim;
+    }
+
+    /// <summary>
+    /// 設置角度偏移
+    /// </summary>
+    public void SetAimAngleOffset(float angleOffset)
+    {
+        aimAngleOffset = angleOffset;
+        useAngleOffset = true;
+    }
+
+    /// <summary>
+    /// 設置向量偏移
+    /// </summary>
+    public void SetAimVectorOffset(Vector2 vectorOffset)
+    {
+        aimVectorOffset = vectorOffset;
+        useAngleOffset = false;
+    }
+
+    /// <summary>
+    /// 獲取應用偏移後的瞄準方向
+    /// </summary>
+    public Vector2 GetAimWithOffset(Vector2 originalAim)
+    {
+        return ApplyAimOffset(originalAim.normalized).normalized;
+    }
+
+    /// <summary>
+    /// 重置所有偏移
+    /// </summary>
+    public void ResetAimOffset()
+    {
+        aimAngleOffset = 0f;
+        aimVectorOffset = Vector2.zero;
     }
 }
