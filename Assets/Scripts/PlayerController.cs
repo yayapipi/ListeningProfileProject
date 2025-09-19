@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private float inputX = 0f;
 
+    // 對話系統相關
+    private bool isInDialogue = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -51,6 +54,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // 檢查是否在對話中
+        CheckDialogueState();
+
+        // 如果在對話中，禁用大部分操作
+        if (isInDialogue)
+        {
+            inputX = 0f; // 停止移動
+            return; // 跳過其他輸入處理
+        }
+
         // 1) 鍵盤 A/D 或 左右方向鍵
         float kbX = Input.GetAxisRaw("Horizontal"); // Unity 預設會同時支援 WASD 與 方向鍵
 
@@ -166,4 +179,42 @@ public class PlayerController : MonoBehaviour
         if (groundCheck == null) return;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
+
+    /// <summary>
+    /// 檢查對話狀態
+    /// </summary>
+    private void CheckDialogueState()
+    {
+        // 檢查是否有任何 NPC 正在對話
+        NPCDialogue[] npcs = FindObjectsOfType<NPCDialogue>();
+        isInDialogue = false;
+
+        foreach (NPCDialogue npc in npcs)
+        {
+            if (npc.IsInDialogue)
+            {
+                isInDialogue = true;
+                break;
+            }
+        }
+
+        // 也可以通過 ChatUIManager 來檢查
+        if (ChatUIManager.Instance != null && ChatUIManager.Instance.CurrentNPC != null)
+        {
+            isInDialogue = ChatUIManager.Instance.CurrentNPC.IsInDialogue;
+        }
+    }
+
+    /// <summary>
+    /// 公開方法：設置對話狀態
+    /// </summary>
+    public void SetDialogueState(bool inDialogue)
+    {
+        isInDialogue = inDialogue;
+    }
+
+    /// <summary>
+    /// 公開屬性：是否在對話中
+    /// </summary>
+    public bool IsInDialogue => isInDialogue;
 }

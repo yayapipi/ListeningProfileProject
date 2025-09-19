@@ -1,5 +1,7 @@
-using TMPro;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class DialogueBubbleUI : MonoBehaviour
 {
@@ -9,12 +11,19 @@ public class DialogueBubbleUI : MonoBehaviour
     [Header("Canvas & Transforms")] public Canvas canvas; // 所属 Canvas（不填则自动向上查找）
     public RectTransform bubbleRoot; // 氣泡根節點（通常就是掛腳本的 RectTransform）
     public RectTransform backgroundRect; // 背景圖 RectTransform（Image）
-    public TextMeshProUGUI text; // TextMeshProUGUI
+    public Text text; // UI Text
 
     [Header("Sizing")] public Vector2 padding = new Vector2(24f, 16f); // 背景相對文本的內邊距（左右、上下）
     public float maxWidth = 420f; // 最大寬度（超過會換行）
     public float minWidth = 80f; // 最小寬度（背景不會更窄）
     public bool clampToCanvas = true; // 是否把氣泡限制在畫布可見範圍內
+
+    [Header("打字機效果")]
+    public float typewriterSpeed = 0.05f; // 每個字符顯示的間隔時間
+    public bool enableTypewriter = true; // 是否啟用打字機效果
+
+    [Header("對話類型")]
+    public bool isPlayerSpeaking = true; // true=玩家對話, false=NPC對話
 
     public string contentDemo;
     private Camera worldCam;
@@ -26,6 +35,13 @@ public class DialogueBubbleUI : MonoBehaviour
     // 由佈局引發、用於抵銷高度變化的 Y 偏移（Canvas 本地座標）
     private float layoutYOffset = 0f;
 
+    // 打字機效果相關
+    private Coroutine typewriterCoroutine;
+    private bool isTyping = false;
+    private string currentFullText = "";
+
+    public static DialogueBubbleUI Instance { get; private set; }
+
     private void Reset()
     {
         bubbleRoot = transform as RectTransform;
@@ -35,20 +51,28 @@ public class DialogueBubbleUI : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         if (!canvas) canvas = GetComponentInParent<Canvas>();
         worldCam = ResolveCamera();
     }
 
+    private void Start()
+    {
+        HideDialogue();
+    }
+
     private void OnEnable()
     {
-        TMPro_EventManager.TEXT_CHANGED_EVENT.Add(OnTextChanged);
         layoutYOffset = 0f;
         RefreshLayout();
     }
 
     private void OnDisable()
     {
-        TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(OnTextChanged);
         deferredScheduled = false;
         isRefreshingLayout = false;
     }
@@ -65,24 +89,15 @@ public class DialogueBubbleUI : MonoBehaviour
         UpdateFollow();
     }
 
-    private void OnTextChanged(Object obj)
-    {
-        if (obj == (Object)text)
-        {
-            if (!isRefreshingLayout)
-                RefreshLayout();
-        }
-    }
 
     public void SetText()
     {
         if (!text) return;
 
-        // 1) 設字並強制標髒
-        text.SetText(contentDemo, true);
-        text.ForceMeshUpdate(false, false);
+        // 1) 設置文字
+        text.text = contentDemo;
 
-        // 2) 立即做一次保守的刷新（不做重建）
+        // 2) 立即做一次保守的刷新
         RefreshLayout();
 
         // 3) 本幀結束再補一次（只安排一次）
@@ -93,6 +108,109 @@ public class DialogueBubbleUI : MonoBehaviour
         }
     }
 
+    // 新增：設置對話文字（帶打字機效果）
+    public void SetDialogueText(string dialogueText, GameObject speaker = null)
+    {
+        if (!text) return;
+
+        // 設置跟隨目標
+        if (speaker != null)
+        {
+            SetTargetObject(speaker);
+        }
+
+        currentFullText = dialogueText;
+
+        if (enableTypewriter)
+        {
+            StartTypewriter(dialogueText);
+        }
+        else
+        {
+            text.text = dialogueText;
+            RefreshLayout();
+        }
+    }
+
+    // 新增：設置跟隨目標
+    public void SetTargetObject(GameObject target)
+    {
+        targetObject = target;
+
+        // 根據目標類型設置對話類型
+        if (target != null)
+        {
+            isPlayerSpeaking = target.CompareTag("Player");
+        }
+    }
+
+    // 新增：開始打字機效果
+    private void StartTypewriter(string fullText)
+    {
+        if (typewriterCoroutine != null)
+        {
+            StopCoroutine(typewriterCoroutine);
+        }
+
+        typewriterCoroutine = StartCoroutine(TypewriterEffect(fullText));
+    }
+
+    // 新增：打字機效果協程
+    private IEnumerator TypewriterEffect(string fullText)
+    {
+        isTyping = true;
+        text.text = "";
+
+        for (int i = 0; i <= fullText.Length; i++)
+        {
+            text.text = fullText.Substring(0, i);
+            RefreshLayout();
+
+            yield return new WaitForSeconds(typewriterSpeed);
+        }
+
+        isTyping = false;
+        typewriterCoroutine = null;
+    }
+
+    // 新增：跳過打字機效果
+    public void SkipTypewriter()
+    {
+        if (isTyping && typewriterCoroutine != null)
+        {
+            StopCoroutine(typewriterCoroutine);
+            text.text = currentFullText;
+            RefreshLayout();
+            isTyping = false;
+            typewriterCoroutine = null;
+        }
+    }
+
+    // 新增：檢查是否正在打字
+    public bool IsTyping()
+    {
+        return isTyping;
+    }
+
+    // 新增：顯示對話泡泡
+    public void ShowDialogue()
+    {
+        gameObject.SetActive(true);
+    }
+
+    // 新增：隱藏對話泡泡
+    public void HideDialogue()
+    {
+        if (typewriterCoroutine != null)
+        {
+            StopCoroutine(typewriterCoroutine);
+            typewriterCoroutine = null;
+        }
+
+        isTyping = false;
+        gameObject.SetActive(false);
+    }
+
     private System.Collections.IEnumerator DeferredRefreshLayout()
     {
         yield return new WaitForEndOfFrame();
@@ -100,7 +218,6 @@ public class DialogueBubbleUI : MonoBehaviour
 
         if (!isActiveAndEnabled || !text) yield break;
 
-        text.ForceMeshUpdate(false, false);
         Canvas.ForceUpdateCanvases();
         RefreshLayout();
     }
@@ -131,34 +248,31 @@ public class DialogueBubbleUI : MonoBehaviour
             float prevBgH = backgroundRect.rect.height;
 
             // 確保啟用換行
-            text.enableWordWrapping = true;
+            text.horizontalOverflow = HorizontalWrapMode.Wrap;
 
             // 計算首選尺寸
             float availableMaxTextWidth = Mathf.Max(0f, maxWidth - padding.x * 2f);
             float minTextWidth = Mathf.Max(0f, minWidth - padding.x * 2f);
 
-            Vector2 pref1 = text.GetPreferredValues(
-                text.text,
-                availableMaxTextWidth > 0 ? availableMaxTextWidth : 0f,
-                0f
-            );
+            // 使用 UI Text 的首選尺寸計算
+            TextGenerator textGen = text.cachedTextGenerator;
+            TextGenerationSettings settings = text.GetGenerationSettings(Vector2.zero);
+            settings.generationExtents = new Vector2(availableMaxTextWidth, 0f);
 
-            float targetTextWidth = Mathf.Clamp(
-                pref1.x,
-                minTextWidth,
-                availableMaxTextWidth > 0 ? availableMaxTextWidth : pref1.x
-            );
+            float preferredWidth = textGen.GetPreferredWidth(text.text, settings);
+            preferredWidth = Mathf.Clamp(preferredWidth, minTextWidth, availableMaxTextWidth);
 
-            Vector2 pref2 = text.GetPreferredValues(text.text, targetTextWidth, 0f);
-            float targetTextHeight = Mathf.Max(1f, pref2.y);
+            settings.generationExtents = new Vector2(preferredWidth, 0f);
+            float preferredHeight = textGen.GetPreferredHeight(text.text, settings);
+            preferredHeight = Mathf.Max(1f, preferredHeight);
 
             // 套用尺寸
             RectTransform textRect = text.rectTransform;
-            textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, targetTextWidth);
-            textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, targetTextHeight);
+            textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, preferredWidth);
+            textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, preferredHeight);
 
-            float bgW = targetTextWidth + padding.x * 2f;
-            float bgH = targetTextHeight + padding.y * 2f;
+            float bgW = preferredWidth + padding.x * 2f;
+            float bgH = preferredHeight + padding.y * 2f;
 
             backgroundRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, bgW);
             backgroundRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, bgH);
