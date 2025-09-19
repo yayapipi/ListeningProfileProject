@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,72 +11,148 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
+    [Header("輸入與武器")]
+    public BubbleWeapon bubbleWeapon;
+    public Joystick moveJoystick;       // 左搖桿（移動）
+    public Joystick aimJoystick;        // 右搖桿（瞄準 + 放開發射）
+    public float joystickDeadZone = 0.1f;
+    public Camera worldCamera;          // 用於滑鼠座標轉世界位置（未指定則自動抓主攝影機）
+
     // 內部變數
     private Rigidbody2D rb;
     private Animator animator;
-    private PlayerInputActions playerInputActions;
-    private Vector2 moveInput;
     private bool isGrounded;
     private bool isFacingRight = true;
+    private float inputX = 0f;
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Enable();
+        if (worldCamera == null) worldCamera = Camera.main;
 
-        // 訂閱事件
-        playerInputActions.Player.Jump.performed += Jump;
-        playerInputActions.Player.Attack.performed += Attack; // 【新增】訂閱攻擊事件
+        // 訂閱右搖桿事件
+        if (aimJoystick != null)
+        {
+            aimJoystick.onValueChanged += OnAimJoystickChanged;
+            aimJoystick.onReleased += OnAimJoystickReleased;
+        }
     }
 
-    private void OnEnable() { playerInputActions.Player.Enable(); }
-    private void OnDisable() { playerInputActions.Player.Disable(); }
-
-    void Update()
+    private void OnDestroy()
     {
-        moveInput = playerInputActions.Player.Move.ReadValue<Vector2>();
+        if (aimJoystick != null)
+        {
+            aimJoystick.onValueChanged -= OnAimJoystickChanged;
+            aimJoystick.onReleased -= OnAimJoystickReleased;
+        }
+    }
+
+    private void Update()
+    {
+        // 1) 鍵盤 A/D 或 左右方向鍵
+        float kbX = Input.GetAxisRaw("Horizontal"); // Unity 預設會同時支援 WASD 與 方向鍵
+
+        // 2) 左搖桿優先（若有明顯輸入）
+        if (moveJoystick != null && moveJoystick.Value.sqrMagnitude > joystickDeadZone * joystickDeadZone)
+            inputX = Mathf.Clamp(moveJoystick.Value.x, -1f, 1f);
+        else
+            inputX = Mathf.Clamp(kbX, -1f, 1f);
+
+        // Space 跳躍
+        if (Input.GetKeyDown(KeyCode.Space))
+            TryJump();
+
+        // 滑鼠右鍵發射（朝滑鼠方向）
+        if (Input.GetMouseButtonDown(1))
+            FireTowardsMouse();
+
         UpdateAnimationParameters();
         Flip();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        // 水平移動
+        rb.linearVelocity = new Vector2(inputX * moveSpeed, rb.linearVelocity.y);
+
+        // 地面檢測
+        if (groundCheck != null)
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
 
-    // 【新增】攻擊事件的處理函式
-    private void Attack(InputAction.CallbackContext context)
+    // -------------------------
+    // 跳躍
+    // -------------------------
+    private void TryJump()
     {
-        if (isGrounded) // 假設只有在地面才能攻擊
+        if (!isGrounded) return;
+
+        if (animator != null) animator.SetTrigger("Jump");
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+    }
+
+    // 提供 UI Button 綁定
+    public void UIJump()
+    {
+        TryJump();
+    }
+
+    // -------------------------
+    // 發射（滑鼠右鍵）
+    // -------------------------
+    private void FireTowardsMouse()
+    {
+        if (bubbleWeapon == null || worldCamera == null) return;
+
+        Vector3 mouseWorld = worldCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 origin = bubbleWeapon.firePoint != null ? bubbleWeapon.firePoint.position : transform.position;
+        Vector2 dir = (mouseWorld - origin);
+
+        bubbleWeapon.SetAim(dir);
+        if (bubbleWeapon.TryFire())
         {
-            animator.SetTrigger("Attack");
-            // 在這裡可以加上實際的攻擊邏輯，例如產生子彈或傷害判定
-            Debug.Log("Player Attacks!");
+            if (animator != null) animator.SetTrigger("Attack");
         }
     }
 
-    private void Jump(InputAction.CallbackContext context)
+    // -------------------------
+    // 右搖桿事件：瞄準/放開發射
+    // -------------------------
+    private void OnAimJoystickChanged(Vector2 v)
     {
-        if (isGrounded)
+        if (bubbleWeapon == null) return;
+        bubbleWeapon.SetAim(v);
+    }
+
+    private void OnAimJoystickReleased(Vector2 lastValue)
+    {
+        if (bubbleWeapon == null) return;
+
+        // 放開時若有有效方向則發射
+        if (lastValue.sqrMagnitude > joystickDeadZone * joystickDeadZone)
         {
-            animator.SetTrigger("Jump");
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            if (bubbleWeapon.TryFire())
+            {
+                if (animator != null) animator.SetTrigger("Attack");
+            }
         }
     }
 
+    // -------------------------
+    // 動畫與翻轉
+    // -------------------------
     private void UpdateAnimationParameters()
     {
-        animator.SetFloat("Speed", Mathf.Abs(moveInput.x));
+        if (animator == null) return;
+        animator.SetFloat("Speed", Mathf.Abs(inputX));
         animator.SetBool("IsGround", isGrounded);
     }
 
     private void Flip()
     {
-        if ((moveInput.x < 0 && isFacingRight) || (moveInput.x > 0 && !isFacingRight))
+        if ((inputX < 0 && isFacingRight) || (inputX > 0 && !isFacingRight))
         {
             isFacingRight = !isFacingRight;
             Vector3 theScale = transform.localScale;
