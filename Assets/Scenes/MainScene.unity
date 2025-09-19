@@ -2599,6 +2599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 0}
+  playerObject: {fileID: 1202238743}
   verticalOffset: 0.2
   canvas: {fileID: 1013295086}
   bubbleRoot: {fileID: 314461876}
@@ -6404,6 +6405,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6064451586282649031, guid: 24aff0db1a94f314199d8a8917c1d9b3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 557725461}
+    - targetCorrespondingSourceObject: {fileID: 6064451586282649031, guid: 24aff0db1a94f314199d8a8917c1d9b3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1202238744}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6613668960503358106, guid: 24aff0db1a94f314199d8a8917c1d9b3, type: 3}
       insertIndex: -1
@@ -7131,6 +7135,9 @@ MonoBehaviour:
     dialogueLines:
     - Hello
     - "\u4F60\u597D\u554A"
+    - "\u6211\u662F\u7DA0\u7DA0"
+    - "\u6211\u662FPlayer"
+    speakers: 01000000000000000100000000000000
     repeatDialogue: 1
     dialogueDisplayTime: 3
     autoAdvance: 0
@@ -8975,6 +8982,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13b09bdec2643f84296a6682a2334f8c, type: 3}
+--- !u!1 &1202238743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1202238744}
+  m_Layer: 6
+  m_Name: DialogPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1202238744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202238743}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.96, y: 21.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 406572214}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1202603230
 PrefabInstance:
   m_ObjectHideFlags: 0

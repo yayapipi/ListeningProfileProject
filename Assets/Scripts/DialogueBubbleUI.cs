@@ -5,7 +5,9 @@ using System.Collections;
 
 public class DialogueBubbleUI : MonoBehaviour
 {
-    [Header("Follow Target")] public GameObject targetObject;
+    [Header("Follow Target")] 
+    public GameObject targetObject;
+    public GameObject playerObject; // 玩家物件，用於玩家對話時跟隨
     public float verticalOffset = 0.2f; // 世界坐标向上偏移（单位：米），可微调到头顶
 
     [Header("Canvas & Transforms")] public Canvas canvas; // 所属 Canvas（不填则自动向上查找）
@@ -58,6 +60,20 @@ public class DialogueBubbleUI : MonoBehaviour
 
         if (!canvas) canvas = GetComponentInParent<Canvas>();
         worldCam = ResolveCamera();
+
+        // 自動尋找玩家物件
+        if (playerObject == null)
+        {
+            playerObject = GameObject.FindWithTag("Player");
+            if (playerObject != null)
+            {
+                Debug.Log($"[DialogueBubbleUI] 自動找到玩家物件: {playerObject.name}");
+            }
+            else
+            {
+                Debug.LogWarning("[DialogueBubbleUI] 找不到標籤為 'Player' 的物件");
+            }
+        }
     }
 
     private void Start()
@@ -118,6 +134,43 @@ public class DialogueBubbleUI : MonoBehaviour
         {
             SetTargetObject(speaker);
         }
+
+        currentFullText = dialogueText;
+
+        if (enableTypewriter)
+        {
+            StartTypewriter(dialogueText);
+        }
+        else
+        {
+            text.text = dialogueText;
+            RefreshLayout();
+        }
+    }
+
+    // 新增：設置對話文字（帶說話者類型）
+    public void SetDialogueText(string dialogueText, GameObject speaker, SpeakerType speakerType)
+    {
+        if (!text) return;
+
+        Debug.Log($"[DialogueBubbleUI] 設置對話: [{speakerType}] {dialogueText}");
+
+        // 根據說話者類型設置跟隨目標
+        GameObject followTarget = speakerType == SpeakerType.Player ? 
+            (playerObject ?? speaker) : speaker;
+
+        if (followTarget != null)
+        {
+            SetTargetObject(followTarget);
+            Debug.Log($"[DialogueBubbleUI] 跟隨目標: {followTarget.name} (說話者類型: {speakerType})");
+        }
+        else
+        {
+            Debug.LogWarning($"[DialogueBubbleUI] 跟隨目標為空，說話者類型: {speakerType}");
+        }
+
+        // 更新對話類型標誌
+        isPlayerSpeaking = (speakerType == SpeakerType.Player);
 
         currentFullText = dialogueText;
 
@@ -292,5 +345,48 @@ public class DialogueBubbleUI : MonoBehaviour
         {
             isRefreshingLayout = false;
         }
+    }
+
+    /// <summary>
+    /// 獲取玩家物件
+    /// </summary>
+    public GameObject GetPlayerObject()
+    {
+        // 如果 playerObject 為空，嘗試重新尋找
+        if (playerObject == null)
+        {
+            playerObject = GameObject.FindWithTag("Player");
+            if (playerObject != null)
+            {
+                Debug.Log($"[DialogueBubbleUI] 重新找到玩家物件: {playerObject.name}");
+            }
+        }
+
+        return playerObject;
+    }
+
+    /// <summary>
+    /// 手動設置玩家物件
+    /// </summary>
+    public void SetPlayerObject(GameObject player)
+    {
+        playerObject = player;
+        Debug.Log($"[DialogueBubbleUI] 手動設置玩家物件: {(player != null ? player.name : "null")}");
+    }
+
+    /// <summary>
+    /// 獲取當前跟隨的目標物件
+    /// </summary>
+    public GameObject GetCurrentTarget()
+    {
+        return targetObject;
+    }
+
+    /// <summary>
+    /// 檢查是否為玩家正在說話
+    /// </summary>
+    public bool IsPlayerCurrentlySpeaking()
+    {
+        return isPlayerSpeaking;
     }
 }
