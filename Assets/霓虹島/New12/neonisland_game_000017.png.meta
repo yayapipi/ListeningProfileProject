@@ -1,0 +1,1222 @@
+fileFormatVersion: 2
+guid: 32e2acf46163ca34ca7f6ac889f258c2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7069990115022667408
+    second: neonisland_game_000017_0
+  - first:
+      213: 3831674488006691913
+    second: neonisland_game_000017_1
+  - first:
+      213: 5633039259275583642
+    second: neonisland_game_000017_2
+  - first:
+      213: -7043231841556367363
+    second: neonisland_game_000017_3
+  - first:
+      213: -7731323898324818490
+    second: neonisland_game_000017_4
+  - first:
+      213: 5988057098718379046
+    second: neonisland_game_000017_5
+  - first:
+      213: 7043675290175643517
+    second: neonisland_game_000017_6
+  - first:
+      213: 3796809117738244047
+    second: neonisland_game_000017_7
+  - first:
+      213: 8067938382155988672
+    second: neonisland_game_000017_8
+  - first:
+      213: -5896521826552453144
+    second: neonisland_game_000017_9
+  - first:
+      213: 7642589487002706193
+    second: neonisland_game_000017_10
+  - first:
+      213: -8552261046432772919
+    second: neonisland_game_000017_11
+  - first:
+      213: -5366756834206530533
+    second: neonisland_game_000017_12
+  - first:
+      213: 3780401210930957640
+    second: neonisland_game_000017_13
+  - first:
+      213: 5412418232046005742
+    second: neonisland_game_000017_14
+  - first:
+      213: -7384692839866213485
+    second: neonisland_game_000017_15
+  - first:
+      213: 410975707630558644
+    second: neonisland_game_000017_16
+  - first:
+      213: -6285036659645202687
+    second: neonisland_game_000017_17
+  - first:
+      213: 2134574187533995558
+    second: neonisland_game_000017_18
+  - first:
+      213: 8036904534896816397
+    second: neonisland_game_000017_19
+  - first:
+      213: -390150197645009960
+    second: neonisland_game_000017_20
+  - first:
+      213: 6522852126640570187
+    second: neonisland_game_000017_21
+  - first:
+      213: 8988274013989852358
+    second: neonisland_game_000017_22
+  - first:
+      213: 131272716267858040
+    second: neonisland_game_000017_23
+  - first:
+      213: 642801776748778863
+    second: neonisland_game_000017_24
+  - first:
+      213: -1224203229568224166
+    second: neonisland_game_000017_25
+  - first:
+      213: -8260842114584803982
+    second: neonisland_game_000017_26
+  - first:
+      213: 832294164288912422
+    second: neonisland_game_000017_27
+  - first:
+      213: -241799814373770668
+    second: neonisland_game_000017_28
+  - first:
+      213: -695323872896265161
+    second: neonisland_game_000017_29
+  - first:
+      213: -3941554253176774944
+    second: neonisland_game_000017_30
+  - first:
+      213: 7281774119580303146
+    second: neonisland_game_000017_31
+  - first:
+      213: 6797660867832903836
+    second: neonisland_game_000017_32
+  - first:
+      213: -7206747267152439080
+    second: neonisland_game_000017_33
+  - first:
+      213: -7764501394216016729
+    second: neonisland_game_000017_34
+  - first:
+      213: 1366026840766772914
+    second: neonisland_game_000017_35
+  - first:
+      213: -5526656874075148281
+    second: neonisland_game_000017_36
+  - first:
+      213: 2975578848145384090
+    second: neonisland_game_000017_37
+  - first:
+      213: 2504828179715792116
+    second: neonisland_game_000017_38
+  - first:
+      213: 1810878698660923446
+    second: neonisland_game_000017_39
+  - first:
+      213: 1469847898483589466
+    second: neonisland_game_000017_40
+  - first:
+      213: -1122875773562716337
+    second: neonisland_game_000017_41
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: neonisland_game_000017_0
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 1042
+        width: 20
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0710d84e27952ed90800000000000000
+      internalID: -7069990115022667408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_1
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 1052
+        width: 644
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94cc09055a7dc2530800000000000000
+      internalID: 3831674488006691913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_2
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 1003
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9063f67c539c2e40800000000000000
+      internalID: 5633039259275583642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_3
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 989
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df7ff4de4f9614e90800000000000000
+      internalID: -7043231841556367363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_4
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 1004
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c56cd470e1d4b490800000000000000
+      internalID: -7731323898324818490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_5
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 989
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62c7dd7843ad91350800000000000000
+      internalID: 5988057098718379046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_6
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 992
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7f9d108b5920c160800000000000000
+      internalID: 7043675290175643517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_7
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 992
+        width: 234
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc790c6b6c9f0b430800000000000000
+      internalID: 3796809117738244047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_8
+      rect:
+        serializedVersion: 2
+        x: 889
+        y: 826
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ceb52a763317ff60800000000000000
+      internalID: 8067938382155988672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_9
+      rect:
+        serializedVersion: 2
+        x: 1098
+        y: 826
+        width: 176
+        height: 176
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e7e00ec3a85b2ea0800000000000000
+      internalID: -5896521826552453144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_10
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 895
+        width: 332
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1116ee075aeef0a60800000000000000
+      internalID: 7642589487002706193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_11
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 948
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ccc6fcd3e3405980800000000000000
+      internalID: -8552261046432772919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_12
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 934
+        width: 232
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b144835f7137585b0800000000000000
+      internalID: -5366756834206530533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_13
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 827
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84d0ff53fdea67430800000000000000
+      internalID: 3780401210930957640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_14
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 827
+        width: 141
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eed23f0b4b5cc1b40800000000000000
+      internalID: 5412418232046005742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_15
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 827
+        width: 142
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39b5768ecfc448990800000000000000
+      internalID: -7384692839866213485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_16
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 878
+        width: 51
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd52a88a3414b500800000000000000
+      internalID: 410975707630558644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_17
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 826
+        width: 516
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10f3a85257017c8a0800000000000000
+      internalID: -6285036659645202687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_18
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 829
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62e8ea20ae78f9d10800000000000000
+      internalID: 2134574187533995558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_19
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 817
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d013048d712d88f60800000000000000
+      internalID: 8036904534896816397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_20
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 816
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8db125c5678e59af0800000000000000
+      internalID: -390150197645009960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_21
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 816
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4fffca1373d58a50800000000000000
+      internalID: 6522852126640570187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_22
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 817
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c45db30893ccbc70800000000000000
+      internalID: 8988274013989852358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_23
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 794
+        width: 45
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 878a8d507df52d100800000000000000
+      internalID: 131272716267858040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_24
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 792
+        width: 19
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f65d91c6fc0bbe800800000000000000
+      internalID: 642801776748778863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_25
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 766
+        width: 196
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5433b816a1c20fe0800000000000000
+      internalID: -1224203229568224166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_26
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 798
+        width: 61
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27506965dd79b5d80800000000000000
+      internalID: -8260842114584803982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_27
+      rect:
+        serializedVersion: 2
+        x: 1130
+        y: 798
+        width: 62
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62c321bf127ec8b00800000000000000
+      internalID: 832294164288912422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_28
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 798
+        width: 62
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45afe759954f4acf0800000000000000
+      internalID: -241799814373770668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_29
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 766
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7345b202f96b956f0800000000000000
+      internalID: -695323872896265161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_30
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 765
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eed77c3a49cc49c0800000000000000
+      internalID: -3941554253176774944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_31
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 660
+        width: 8
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f77343bfe0e0560800000000000000
+      internalID: 7281774119580303146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_32
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 723
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c98f0c23b84265e50800000000000000
+      internalID: 6797660867832903836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_33
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 544
+        width: 1222
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d89c532b8d7cfb90800000000000000
+      internalID: -7206747267152439080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_34
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 542
+        width: 9
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a4aabbbe13fe3490800000000000000
+      internalID: -7764501394216016729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_35
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 536
+        width: 638
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b67d859c2a15f210800000000000000
+      internalID: 1366026840766772914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_36
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 536
+        width: 570
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 700b741cade5d43b0800000000000000
+      internalID: -5526656874075148281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_37
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 398
+        width: 122
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a922fd472316b4920800000000000000
+      internalID: 2975578848145384090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_38
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 398
+        width: 753
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fc195355ffe2c220800000000000000
+      internalID: 2504828179715792116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_39
+      rect:
+        serializedVersion: 2
+        x: 942
+        y: 397
+        width: 122
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 638810df498812910800000000000000
+      internalID: 1810878698660923446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_40
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 397
+        width: 203
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5108f640e2f56410800000000000000
+      internalID: 1469847898483589466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: neonisland_game_000017_41
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 43
+        width: 1228
+        height: 336
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4ff6e5ee6eba60f0800000000000000
+      internalID: -1122875773562716337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      neonisland_game_000017_0: -7069990115022667408
+      neonisland_game_000017_1: 3831674488006691913
+      neonisland_game_000017_10: 7642589487002706193
+      neonisland_game_000017_11: -8552261046432772919
+      neonisland_game_000017_12: -5366756834206530533
+      neonisland_game_000017_13: 3780401210930957640
+      neonisland_game_000017_14: 5412418232046005742
+      neonisland_game_000017_15: -7384692839866213485
+      neonisland_game_000017_16: 410975707630558644
+      neonisland_game_000017_17: -6285036659645202687
+      neonisland_game_000017_18: 2134574187533995558
+      neonisland_game_000017_19: 8036904534896816397
+      neonisland_game_000017_2: 5633039259275583642
+      neonisland_game_000017_20: -390150197645009960
+      neonisland_game_000017_21: 6522852126640570187
+      neonisland_game_000017_22: 8988274013989852358
+      neonisland_game_000017_23: 131272716267858040
+      neonisland_game_000017_24: 642801776748778863
+      neonisland_game_000017_25: -1224203229568224166
+      neonisland_game_000017_26: -8260842114584803982
+      neonisland_game_000017_27: 832294164288912422
+      neonisland_game_000017_28: -241799814373770668
+      neonisland_game_000017_29: -695323872896265161
+      neonisland_game_000017_3: -7043231841556367363
+      neonisland_game_000017_30: -3941554253176774944
+      neonisland_game_000017_31: 7281774119580303146
+      neonisland_game_000017_32: 6797660867832903836
+      neonisland_game_000017_33: -7206747267152439080
+      neonisland_game_000017_34: -7764501394216016729
+      neonisland_game_000017_35: 1366026840766772914
+      neonisland_game_000017_36: -5526656874075148281
+      neonisland_game_000017_37: 2975578848145384090
+      neonisland_game_000017_38: 2504828179715792116
+      neonisland_game_000017_39: 1810878698660923446
+      neonisland_game_000017_4: -7731323898324818490
+      neonisland_game_000017_40: 1469847898483589466
+      neonisland_game_000017_41: -1122875773562716337
+      neonisland_game_000017_5: 5988057098718379046
+      neonisland_game_000017_6: 7043675290175643517
+      neonisland_game_000017_7: 3796809117738244047
+      neonisland_game_000017_8: 8067938382155988672
+      neonisland_game_000017_9: -5896521826552453144
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

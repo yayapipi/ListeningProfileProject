@@ -1,0 +1,69 @@
+using UnityEngine;
+
+public class Dog1 : MonoBehaviour
+{
+    public float moveSpeed = 3f;
+    public Transform groundDetection; 
+
+    private Rigidbody2D rb;
+    private bool movingRight = false;
+
+    // 這會告訴腳本只偵測什麼圖層
+    public LayerMask whatIsGround;
+    
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        transform.eulerAngles = new Vector2(0, -180);
+        
+        // 設定 whatIsGround 為除了 Player 圖層之外的所有圖層
+        whatIsGround = ~LayerMask.GetMask("Player");
+    }
+
+    void Update()
+    {
+        // 讓角色向當前方向移動
+        if (movingRight)
+        {
+            rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(-moveSpeed, rb.linearVelocity.y);
+        }
+
+        // 發射射線，並指定只偵測 whatIsGround 圖層
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 2f, whatIsGround);
+
+        if (groundInfo.collider != null)
+        {
+            // 如果偵測到東西，印出名字
+            Debug.Log("偵測到物件: " + groundInfo.collider.name + " 的碰撞器。");
+        }
+        else
+        {
+            // 如果沒有，印出提示
+            Debug.Log("偵測器回報：腳下是空的，沒有碰撞物！");
+        }
+
+        // 如果腳下沒有東西，就回頭
+        if (groundInfo.collider == null)
+        {
+            TurnAround();
+        }
+    }
+
+    void TurnAround()
+    {
+        movingRight = !movingRight;
+        
+        if (movingRight)
+        {
+            transform.eulerAngles = new Vector2(0, 0);
+        }
+        else
+        {
+            transform.eulerAngles = new Vector2(0, -180);
+        }
+    }
+}
