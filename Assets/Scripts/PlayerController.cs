@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public Joystick aimJoystick;        // 右搖桿（瞄準 + 放開發射）
     public float joystickDeadZone = 0.1f;
     public Camera worldCamera;          // 用於滑鼠座標轉世界位置（未指定則自動抓主攝影機）
+    public Button JumpBtn;
 
     [Header("動畫參數名稱")]
     [Tooltip("待機動畫參數名稱")]
@@ -67,6 +69,8 @@ public class PlayerController : MonoBehaviour
             aimJoystick.onValueChanged += OnAimJoystickChanged;
             aimJoystick.onReleased += OnAimJoystickReleased;
         }
+        
+        JumpBtn.onClick.AddListener(UIJump);
     }
 
     /// <summary>
