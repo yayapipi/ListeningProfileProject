@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7690451663202858569}
   - component: {fileID: 1951061797665313310}
   - component: {fileID: 971035515468977840}
+  - component: {fileID: 520752691971081661}
   m_Layer: 0
   m_Name: qz_bullet
   m_TagString: QzBullet
@@ -147,3 +148,32 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 2.17
+--- !u!114 &520752691971081661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6487444579449142970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab3c883231e4753b2fc4b9ba8dc003e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletTag: Bubble
+  megaTag: Mega
+  pigBossTag: PigBoss
+  bulletAnimator: {fileID: 1951061797665313310}
+  megaAnimationTrigger: mega
+  healthSlider: {fileID: 0}
+  gameOverObject: {fileID: 0}
+  pigBossObject: {fileID: 0}
+  damageAmount: 3
+  maxHealth: 1
+  destroyOnCollision: 0
+  destroyDelay: 1
+  destroyOnPigBossHit: 1
+  destroyOnUpgrade: 0
+  flashDuration: 0.1
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
+  enableDebugLog: 1
