@@ -18,6 +18,16 @@ public class PlayerController : MonoBehaviour
     public float joystickDeadZone = 0.1f;
     public Camera worldCamera;          // 用於滑鼠座標轉世界位置（未指定則自動抓主攝影機）
 
+    [Header("動畫參數名稱")]
+    [Tooltip("待機動畫參數名稱")]
+    public string idleAnimationName = "idle";
+    [Tooltip("攻擊動畫觸發器名稱")]
+    public string attackTriggerName = "attack";
+    [Tooltip("跳躍動畫觸發器名稱")]
+    public string jumpTriggerName = "jump";
+    [Tooltip("行走動畫參數名稱")]
+    public string walkAnimationName = "walk";
+
     // 內部變數
     private Rigidbody2D rb;
     private Animator animator;
@@ -35,12 +45,33 @@ public class PlayerController : MonoBehaviour
 
         if (worldCamera == null) worldCamera = Camera.main;
 
+        // 確保動畫參數名稱有預設值
+        ValidateAnimationParameters();
+
         // 訂閱右搖桿事件
         if (aimJoystick != null)
         {
             aimJoystick.onValueChanged += OnAimJoystickChanged;
             aimJoystick.onReleased += OnAimJoystickReleased;
         }
+    }
+
+    /// <summary>
+    /// 驗證並設定動畫參數的預設值
+    /// </summary>
+    private void ValidateAnimationParameters()
+    {
+        if (string.IsNullOrEmpty(idleAnimationName))
+            idleAnimationName = "idle";
+        
+        if (string.IsNullOrEmpty(attackTriggerName))
+            attackTriggerName = "attack";
+        
+        if (string.IsNullOrEmpty(jumpTriggerName))
+            jumpTriggerName = "jump";
+        
+        if (string.IsNullOrEmpty(walkAnimationName))
+            walkAnimationName = "walk";
     }
 
     private void OnDestroy()
@@ -102,7 +133,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!isGrounded) return;
 
-        if (animator != null) animator.SetTrigger("Jump");
+        if (animator != null && !string.IsNullOrEmpty(jumpTriggerName))
+            animator.SetTrigger(jumpTriggerName);
+        
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
@@ -126,7 +159,8 @@ public class PlayerController : MonoBehaviour
         bubbleWeapon.SetAim(dir);
         if (bubbleWeapon.TryFire())
         {
-            if (animator != null) animator.SetTrigger("Attack");
+            if (animator != null && !string.IsNullOrEmpty(attackTriggerName))
+                animator.SetTrigger(attackTriggerName);
         }
     }
 
@@ -148,7 +182,8 @@ public class PlayerController : MonoBehaviour
         {
             if (bubbleWeapon.TryFire())
             {
-                if (animator != null) animator.SetTrigger("Attack");
+                if (animator != null && !string.IsNullOrEmpty(attackTriggerName))
+                    animator.SetTrigger(attackTriggerName);
             }
         }
     }
@@ -159,8 +194,27 @@ public class PlayerController : MonoBehaviour
     private void UpdateAnimationParameters()
     {
         if (animator == null) return;
-        animator.SetFloat("Speed", Mathf.Abs(inputX));
+
+        // 使用可自定義的參數名稱
+        float speed = Mathf.Abs(inputX);
+        
+        // 設定速度參數 (用於區分 idle 和 walk)
+        animator.SetFloat("Speed", speed);
         animator.SetBool("IsGround", isGrounded);
+
+        // 根據速度播放對應動畫
+        if (speed > 0.1f && isGrounded)
+        {
+            // 行走動畫
+            if (!string.IsNullOrEmpty(walkAnimationName))
+                animator.Play(walkAnimationName);
+        }
+        else if (speed <= 0.1f && isGrounded)
+        {
+            // 待機動畫
+            if (!string.IsNullOrEmpty(idleAnimationName))
+                animator.Play(idleAnimationName);
+        }
     }
 
     private void Flip()
