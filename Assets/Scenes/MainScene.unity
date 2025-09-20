@@ -6942,6 +6942,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 91bcceb92e2224a4f9e02343583b37a7, type: 2}
+    - target: {fileID: 7299071866475579794, guid: 24aff0db1a94f314199d8a8917c1d9b3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.67
+      objectReference: {fileID: 0}
     - target: {fileID: 8100825100859875436, guid: 24aff0db1a94f314199d8a8917c1d9b3, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -7028,6 +7032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 10
+  maxJumpCount: -1
   groundCheck: {fileID: 767056035}
   groundCheckRadius: 0.2
   groundLayer:
@@ -7042,6 +7047,8 @@ MonoBehaviour:
   attackTriggerName: bd_attack
   jumpTriggerName: bd_jump
   walkAnimationName: bd_walk
+  speedParameterName: Speed
+  isGroundParameterName: IsGround
 --- !u!1 &781962916
 GameObject:
   m_ObjectHideFlags: 0
@@ -7872,6 +7879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 10
+  maxJumpCount: -1
   groundCheck: {fileID: 606160867}
   groundCheckRadius: 0.2
   groundLayer:
@@ -7886,6 +7894,8 @@ MonoBehaviour:
   attackTriggerName: attack
   jumpTriggerName: jump
   walkAnimationName: walk
+  speedParameterName: Speed
+  isGroundParameterName: IsGround
 --- !u!114 &952540740
 MonoBehaviour:
   m_ObjectHideFlags: 0

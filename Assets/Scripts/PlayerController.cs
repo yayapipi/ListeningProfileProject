@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
     [Header("移動設定")]
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
+    [Tooltip("最大跳躍次數 (-1 = 無限跳躍)")]
+    public int maxJumpCount = 2;
 
     [Header("地面檢測設定")]
     public Transform groundCheck;
@@ -27,13 +29,19 @@ public class PlayerController : MonoBehaviour
     public string jumpTriggerName = "jump";
     [Tooltip("行走動畫參數名稱")]
     public string walkAnimationName = "walk";
+    [Tooltip("速度參數名稱 (Float)")]
+    public string speedParameterName = "Speed";
+    [Tooltip("是否在地面參數名稱 (Bool)")]
+    public string isGroundParameterName = "IsGround";
 
     // 內部變數
     private Rigidbody2D rb;
     private Animator animator;
     private bool isGrounded;
+    private bool wasGrounded; // 用於檢測剛落地
     private bool isFacingRight = true;
     private float inputX = 0f;
+    private int currentJumpCount = 0; // 當前跳躍次數
 
     // 對話系統相關
     private bool isInDialogue = false;
@@ -47,6 +55,9 @@ public class PlayerController : MonoBehaviour
 
         // 確保動畫參數名稱有預設值
         ValidateAnimationParameters();
+
+        // 初始化跳躍次數
+        currentJumpCount = 0;
 
         // 訂閱右搖桿事件
         if (aimJoystick != null)
@@ -72,6 +83,12 @@ public class PlayerController : MonoBehaviour
         
         if (string.IsNullOrEmpty(walkAnimationName))
             walkAnimationName = "walk";
+        
+        if (string.IsNullOrEmpty(speedParameterName))
+            speedParameterName = "Speed";
+        
+        if (string.IsNullOrEmpty(isGroundParameterName))
+            isGroundParameterName = "IsGround";
     }
 
     private void OnDestroy()
@@ -122,8 +139,15 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(inputX * moveSpeed, rb.linearVelocity.y);
 
         // 地面檢測
+        wasGrounded = isGrounded;
         if (groundCheck != null)
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // 如果剛落地，重置跳躍次數
+        if (isGrounded && !wasGrounded)
+        {
+            currentJumpCount = 0;
+        }
     }
 
     // -------------------------
@@ -131,13 +155,40 @@ public class PlayerController : MonoBehaviour
     // -------------------------
     private void TryJump()
     {
-        if (!isGrounded) return;
+        // 檢查跳躍次數限制
+        if (maxJumpCount != -1 && currentJumpCount >= maxJumpCount)
+            return;
+
+        // 如果不在地面且這是第一次跳躍，不允許
+        if (!isGrounded && currentJumpCount == 0)
+            return;
+
+        // 執行跳躍
+        currentJumpCount++;
 
         if (animator != null && !string.IsNullOrEmpty(jumpTriggerName))
             animator.SetTrigger(jumpTriggerName);
         
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
+
+    /// <summary>
+    /// 重置跳躍次數（供外部調用）
+    /// </summary>
+    public void ResetJumpCount()
+    {
+        currentJumpCount = 0;
+    }
+
+    /// <summary>
+    /// 獲取當前跳躍次數
+    /// </summary>
+    public int CurrentJumpCount => currentJumpCount;
+
+    /// <summary>
+    /// 獲取剩餘跳躍次數 (-1 表示無限)
+    /// </summary>
+    public int RemainingJumps => maxJumpCount == -1 ? -1 : Mathf.Max(0, maxJumpCount - currentJumpCount);
 
     // 提供 UI Button 綁定
     public void UIJump()
@@ -198,9 +249,12 @@ public class PlayerController : MonoBehaviour
         // 使用可自定義的參數名稱
         float speed = Mathf.Abs(inputX);
         
-        // 設定速度參數 (用於區分 idle 和 walk)
-        animator.SetFloat("Speed", speed);
-        animator.SetBool("IsGround", isGrounded);
+        // 設定動畫參數 (只有當參數名稱不為空時才設定)
+        if (!string.IsNullOrEmpty(speedParameterName))
+            animator.SetFloat(speedParameterName, speed);
+        
+        if (!string.IsNullOrEmpty(isGroundParameterName))
+            animator.SetBool(isGroundParameterName, isGrounded);
 
         // 根據速度播放對應動畫
         if (speed > 0.1f && isGrounded)
