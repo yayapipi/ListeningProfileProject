@@ -32,17 +32,9 @@ namespace DefaultNamespace
         [Header("調試")] public bool enableDebugLog = true; // 是否啟用調試日誌
 
         private bool isMegaBullet = false; // 是否已經是mega子彈
-        private float currentHealth; // 當前血量
+        public float currentHealth = 10; // 當前血量
 
-        void Start()
-        {
-            // 初始化血量
-            if (healthSlider != null)
-            {
-                healthSlider.value = currentHealth;
-            }
 
-        }
 
         void OnCollisionEnter2D(Collision2D collision)
         {
