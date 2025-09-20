@@ -32,8 +32,7 @@ public class BubbleProjectile : MonoBehaviour
     private Color originalColor;
 
     // 平台功能相關
-    private List<GameObject> playersOnBubble = new List<GameObject>();
-    private Dictionary<GameObject, Vector2> originalPlayerVelocities = new Dictionary<GameObject, Vector2>();
+    private List<PlayerController> playersOnBubble = new List<PlayerController>();
 
     private void Awake()
     {
@@ -106,8 +105,7 @@ public class BubbleProjectile : MonoBehaviour
             Vector2 newPosition = rb.position + dir * speed * Time.fixedDeltaTime;
             rb.MovePosition(newPosition);
 
-            // 如果有玩家在泡泡上，讓他們跟隨移動
-            UpdatePlayersOnBubble(newPosition - rb.position);
+            // 以父子關係處理跟隨，無需額外速度同步
         }
     }
 
@@ -136,7 +134,11 @@ public class BubbleProjectile : MonoBehaviour
         // 檢查是否是玩家
         if (IsInLayerMask(other.gameObject.layer, playerLayer))
         {
-            HandlePlayerEnter(other.gameObject);
+            var player = other.GetComponentInParent<PlayerController>();
+            if (player != null)
+            {
+                HandlePlayerEnter(player);
+            }
         }
         // 檢查是否是建築物/環境
         else if (IsInLayerMask(other.gameObject.layer, environmentLayer))
@@ -152,61 +154,31 @@ public class BubbleProjectile : MonoBehaviour
         // 玩家離開泡泡
         if (IsInLayerMask(other.gameObject.layer, playerLayer))
         {
-            HandlePlayerExit(other.gameObject);
+            var player = other.GetComponentInParent<PlayerController>();
+            if (player != null)
+            {
+                HandlePlayerExit(player);
+            }
         }
     }
 
-    private void HandlePlayerEnter(GameObject player)
+    private void HandlePlayerEnter(PlayerController player)
     {
+        if (player == null) return;
         if (!playersOnBubble.Contains(player))
         {
             playersOnBubble.Add(player);
-
-            // 儲存玩家原來的速度
-            Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-            if (playerRb != null)
-            {
-                originalPlayerVelocities[player] = playerRb.linearVelocity;
-            }
+            player.AttachToBubble(transform);
         }
     }
 
-    private void HandlePlayerExit(GameObject player)
+    private void HandlePlayerExit(PlayerController player)
     {
+        if (player == null) return;
         if (playersOnBubble.Contains(player))
         {
             playersOnBubble.Remove(player);
-
-            // 恢復玩家原來的速度
-            if (originalPlayerVelocities.ContainsKey(player))
-            {
-                Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-                if (playerRb != null)
-                {
-                    playerRb.linearVelocity = originalPlayerVelocities[player];
-                }
-                originalPlayerVelocities.Remove(player);
-            }
-        }
-    }
-
-    private void UpdatePlayersOnBubble(Vector2 movement)
-    {
-        foreach (GameObject player in playersOnBubble)
-        {
-            if (player != null)
-            {
-                Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-                if (playerRb != null)
-                {
-                    // 讓玩家跟隨泡泡移動
-                    Vector2 currentVel = playerRb.linearVelocity;
-                    Vector2 bubbleVel = dir * speed;
-
-                    // 保持玩家的 Y 軸速度，但 X 軸跟隨泡泡
-                    playerRb.linearVelocity = new Vector2(bubbleVel.x, currentVel.y);
-                }
-            }
+            player.DetachFromBubble(transform);
         }
     }
 
@@ -216,11 +188,16 @@ public class BubbleProjectile : MonoBehaviour
 
         isPopping = true;
 
-        // 讓所有在泡泡上的玩家恢復原速度
-        foreach (GameObject player in playersOnBubble)
+        // 讓所有在泡泡上的玩家解除附著
+        for (int i = playersOnBubble.Count - 1; i >= 0; i--)
         {
-            HandlePlayerExit(player);
+            var p = playersOnBubble[i];
+            if (p != null)
+            {
+                p.DetachFromBubble(transform);
+            }
         }
+        playersOnBubble.Clear();
 
         // 停止移動
         rb.linearVelocity = Vector2.zero;

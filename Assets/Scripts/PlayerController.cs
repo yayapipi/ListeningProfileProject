@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
     private bool isFacingRight = true;
     private float inputX = 0f;
     private int currentJumpCount = 0; // 當前跳躍次數
+    private Transform currentBubble;
+    private bool isOnBubble = false;
 
     // 對話系統相關
     private bool isInDialogue = false;
@@ -159,12 +161,18 @@ public class PlayerController : MonoBehaviour
         if (maxJumpCount != -1 && currentJumpCount >= maxJumpCount)
             return;
 
-        // 如果不在地面且這是第一次跳躍，不允許
-        if (!isGrounded && currentJumpCount == 0)
+        // 如果不在地面且這是第一次跳躍，不允許（但在泡泡上例外）
+        if (!isGrounded && currentJumpCount == 0 && !isOnBubble)
             return;
 
         // 執行跳躍
         currentJumpCount++;
+
+        // 若在泡泡上，跳躍時解除附著
+        if (isOnBubble)
+        {
+            DetachFromBubble();
+        }
 
         if (animator != null && !string.IsNullOrEmpty(jumpTriggerName))
             animator.SetTrigger(jumpTriggerName);
@@ -323,4 +331,29 @@ public class PlayerController : MonoBehaviour
     /// 公開屬性：是否在對話中
     /// </summary>
     public bool IsInDialogue => isInDialogue;
+
+    /// <summary>
+    /// 附著到泡泡上，讓玩家跟隨泡泡移動
+    /// </summary>
+    public void AttachToBubble(Transform bubble)
+    {
+        if (bubble == null) return;
+        currentBubble = bubble;
+        isOnBubble = true;
+        transform.SetParent(bubble);
+        // 視為落地：重置跳躍次數
+        currentJumpCount = 0;
+    }
+
+    /// <summary>
+    /// 從泡泡解除附著
+    /// </summary>
+    public void DetachFromBubble(Transform expectedBubble = null)
+    {
+        if (!isOnBubble) return;
+        if (expectedBubble != null && currentBubble != expectedBubble) return;
+        isOnBubble = false;
+        currentBubble = null;
+        transform.SetParent(null);
+    }
 }
